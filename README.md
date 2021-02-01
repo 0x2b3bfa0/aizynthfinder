@@ -19,13 +19,9 @@ git clone https://github.com/MolecularAI/aizynthfinder
 cd aizynthfinder
 
 conda env create --file environment.yml
+conda run --name aizynthfinder poetry install
 conda activate aizynthfinder
-
-poetry config --local settings.virtualenvs.create false
-poetry install
 ```
-
-> Note on the `graphviz` installation: This package does not depend on any third-party python interfaces to `graphviz` but instead calls the `neato` and `dot` executables directly. If these executable are not in the `PATH` environmental variable, the generation of route images will not work. If unable to install it properly with the default `conda` chanel, try adding `anaconda` to the channel list on `environment.yml`.
 
 ## Usage
 

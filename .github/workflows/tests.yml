@@ -13,10 +13,8 @@ jobs:
     - uses: actions/checkout@v2
     - name: Run
       run: |
-        wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
-        chmod +x $(basename $_) && ./$_ -b
+        wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh |
+            bash -s -- --batch
         conda env create --file environment.yml
-        conda activate aizynthfinder
-        poetry config --local settings.virtualenvs.create false
-        poetry install
-        poe test
+        conda run --name aizynthfinder poetry install
+        conda run --name aizynthfinder poe test
